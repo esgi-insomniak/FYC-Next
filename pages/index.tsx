@@ -2,8 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { getSortedPostsData } from '../lib/posts';
 
-const Home: NextPage = () => {
+const Home: NextPage = (allPostsData: any) => {
+  console.log(allPostsData);
   return (
     <div className={styles.container}>
       <Head>
@@ -52,7 +54,20 @@ const Home: NextPage = () => {
           </a>
         </div>
       </main>
-
+      <section>
+        <h2>Blog</h2>
+        <ul>
+          {allPostsData.allPostsData.map(({ id, date, title }) => (
+            <li key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul>
+      </section>
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -70,3 +85,12 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
