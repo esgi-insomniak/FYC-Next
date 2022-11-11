@@ -4,7 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { getSortedPostsData } from '../lib/posts';
 
-const Home: NextPage = (allPostsData: any) => {
+const Home: NextPage = (allPostsData: object) => {
   console.log(allPostsData);
   return (
     <div className={styles.container}>
