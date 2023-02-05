@@ -1,33 +1,29 @@
-import Layout from '../../components/layout';
-import { getAllPostIds, getPostData } from '../../lib/posts';
+import { NextPage } from "next"
+import { useRouter } from "next/router"
+import React from "react"
+import { Post } from "."
+import Layout from "../../components/layout"
 
-export default function Post(postData: any) {
+const PostInfoPage: NextPage = () => {
+  const router = useRouter()
+  const { id: postId } = router.query
+  const [post, setPost] = React.useState<Post>({} as Post)
+
+  React.useEffect(() => {
+    fetch(`/api/posts/${postId}`, { method: "GET" })
+      .then((res) => res.json())
+      .then((data) => {
+        setPost(data)
+      })
+  }, [postId])
+
   return (
     <Layout>
-      {postData.postData.title}
-      <br />
-      {postData.postData.id}
-      <br />
-      {postData.postData.date}
-      <br />
-      <div dangerouslySetInnerHTML={{ __html: postData.postData.contentHtml }} />
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+      <p>{post.id}</p>
     </Layout>
-  );
+  )
 }
 
-export async function getStaticPaths() {
-  const paths = getAllPostIds();
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(params: any) {
-  const postData = await getPostData(params.params.id);
-  return {
-    props: {
-      postData,
-    },
-  };
-}
+export default PostInfoPage
