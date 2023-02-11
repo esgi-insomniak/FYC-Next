@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData, getDataFromApi } from '../lib/posts';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home({ allPostsData, dataApi }: { allPostsData: { id: string; date: string; title: string; }[]; dataApi: { id: string; title: string; }[];}) {
@@ -10,15 +10,16 @@ export default function Home({ allPostsData, dataApi }: { allPostsData: { id: st
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Bonjour, je suis Raphaël Bessonnier, l'un des créateur de ce cours. Je suis aussi alternant chez Adhara France en tant que développeur fullstack et étudiant en 5ème année à l'ESGI.</p>
-        <p>
-          Voici un lien de redirection vers notre first-post<br />
-          <a href="/posts/first-post">First post</a><br />
-          <a href="/posts/second-post">Second post</a><br />
-          <a href="/posts/third-post">Test de la page 404</a>
-        </p>
+      <section>
+        <div>
+          <Image src="/26ae1241ca65ba8e8ff4a4d442c92566.png" alt="Logo" width={1280} height={350} />
+        </div>
+        <div>
+          <h1>Notre blog</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec iaculis urna. Vivamus ut viverra augue. Nam a odio id nibh consectetur lobortis non nec dui. Ut condimentum scelerisque posuere. Nunc lacinia sapien ac mi malesuada, ut accumsan dolor scelerisque. Pellentesque commodo enim vitae sapien ultricies tristique. Curabitur efficitur, augue vitae pretium consequat, augue lectus elementum purus, non tristique orci nulla quis leo. Vestibulum gravida posuere nibh ac malesuada. Morbi ut aliquet est, non aliquam turpis.
 
+Duis mollis in enim vel maximus. Morbi cursus semper urna, dapibus imperdiet diam mattis eu. Phasellus in massa a tellus dictum fringilla. Mauris cursus augue vitae eros accumsan aliquet. Suspendisse ornare sodales nisl at hendrerit. Nulla venenatis nibh sed augue laoreet, rutrum lobortis metus congue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque efficitur ut ipsum in dapibus. Suspendisse sit amet turpis tellus. Praesent lacinia lacinia est, vitae congue ex tristique eu. Integer eget accumsan ipsum, et maximus turpis. Ut nibh diam, blandit ut lectus in, venenatis commodo ante. Morbi interdum suscipit lectus, quis posuere dui. Donec risus enim, mattis non dui vel, tempus dapibus est.</p>
+        </div>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>

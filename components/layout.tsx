@@ -3,12 +3,21 @@ import Image from 'next/image';
 import styles from '../styles/layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import Header from './header';
+import Footer from './footer';
 
 const name = 'Raphaël Bessonnier';
 export const siteTitle = 'Notre site';
 
 export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
+
+  const goBack = () => {
+    window.history.back();
+  };
+
   return (
+    <>
+    <Header />
     <div className={styles.container}>
       <Head>
         <title>{siteTitle}</title>
@@ -62,9 +71,11 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
+          <button className={styles.button} onClick={goBack}>← Revenir en arrière</button>
         </div>
       )}
     </div>
+    <Footer />
+    </>
   );
 }
